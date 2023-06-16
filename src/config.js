@@ -1,0 +1,1 @@
+export const TOKEN_SECRET = '&6IjY0OG$M5ZDU1#ZD'

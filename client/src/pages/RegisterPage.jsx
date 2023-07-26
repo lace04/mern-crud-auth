@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function RegisterPage() {
   const {
@@ -26,7 +26,9 @@ function RegisterPage() {
     <div className=''>
       <h1 className='text-3xl text-center font-bold mt-5'>Register</h1>
       {RegisterErrors.map((error, i) => (
-        <div key={i} className='bg-red-500 p-2 text-white w-1/2 m-auto'>{error}</div>
+        <div key={i} className='bg-red-500 p-2 text-white w-1/2 m-auto'>
+          {error}
+        </div>
       ))}
       <form
         onSubmit={onSubmit}
@@ -69,6 +71,12 @@ function RegisterPage() {
         >
           Register
         </button>
+        <p className='text-center flex justify-between'>
+          Already have an account?
+          <Link to='/login' className='text-sky-500 hover:text-sky-600'>
+            Sign In
+          </Link>
+        </p>
       </form>
     </div>
   );

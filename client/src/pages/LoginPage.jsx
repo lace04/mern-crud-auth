@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 
@@ -10,11 +10,18 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const { signin, errors: signinErrors } = useAuth();
+  const { signin, errors: signinErrors, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data) => {
     signin(data);
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/tasks');
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className=''>
@@ -50,13 +57,13 @@ function LoginPage() {
         )}
         <button
           type='submit'
-          className='bg-blue-600 hover:bg-blue-700 rounded-md p-2 transition'
+          className='bg-emerald-600 hover:bg-emerald-700 rounded-md p-2 transition'
         >
           Login
         </button>
         <p className='text-center flex justify-between'>
           Don't have an account?
-          <Link to='/register' className='text-sky-500 hover:text-sky-600'>
+          <Link to='/register' className='text-emerald-500 hover:text-emerald-600'>
             Sign Up
           </Link>
         </p>

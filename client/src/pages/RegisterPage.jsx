@@ -67,13 +67,13 @@ function RegisterPage() {
         )}
         <button
           type='submit'
-          className='bg-blue-600 hover:bg-blue-700 rounded-md p-2 transition'
+          className='bg-emerald-600 hover:bg-emerald-700 rounded-md p-2 transition'
         >
           Register
         </button>
         <p className='text-center flex justify-between'>
           Already have an account?
-          <Link to='/login' className='text-sky-500 hover:text-sky-600'>
+          <Link to='/login' className='text-emerald-500 hover:text-emerald-600'>
             Sign In
           </Link>
         </p>

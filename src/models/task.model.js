@@ -13,6 +13,7 @@ const taskSchema = new mongoose.Schema(
     },
     date: {
       type: Date,
+      default: Date.now(),
       required: false,
     },
     user: {

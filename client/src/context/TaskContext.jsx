@@ -21,8 +21,7 @@ export const TaskProvider = ({ children }) => {
 
   const createTask = async (task) => {
     try {
-      const res = await createTaskRequest(task);
-      console.log(res.data);
+      await createTaskRequest(task);
     } catch (error) {
       console.log(error);
     }
@@ -37,12 +36,41 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
+  const deleteTask = async (id) => {
+    try {
+      const res = await deleteTaskRequest(id);
+      if (res.status === 204) setTasks(tasks.filter((task) => task._id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getTask = async (id) => {
+    try {
+      const res = await getTaskRequest(id);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateTask = async (id, task) => {
+    try {
+      await updateTaskRequest(id, task);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tasks,
         createTask,
         getTasks,
+        getTask,
+        deleteTask,
+        updateTask,
       }}
     >
       {children}
